@@ -96,4 +96,48 @@
 
     <p>
       This Memorandum of Understanding is made on
-      <b id
+      <b id="d_date">[Date]</b> between
+      <b id="d_seller">[Seller]</b> (Seller) and
+      <b id="d_buyer">[Buyer]</b> (Buyer).
+    </p>
+
+    <p>
+      The Seller agrees to sell the property located at
+      <b id="d_property">[Property Address]</b>
+      for a total consideration of ₹<b id="d_amount">[Amount]</b>.
+    </p>
+
+    <p>
+      Both parties agree to the terms and conditions stated herein.
+    </p>
+
+    <br>
+    <p>Seller Signature: ____________________</p>
+    <p>Buyer Signature: ____________________</p>
+  </div>
+
+</div>
+
+<script>
+function updateDraft(){
+  d_buyer.innerText = buyer.value || "[Buyer]";
+  d_seller.innerText = seller.value || "[Seller]";
+  d_property.innerText = property.value || "[Property]";
+  d_amount.innerText = amount.value || "[Amount]";
+  d_date.innerText = date.value || "[Date]";
+}
+
+function downloadPDF(){
+  if(!phone.value){
+    alert("Please enter your phone number to download the draft");
+    return;
+  }
+
+  html2pdf()
+    .from(document.getElementById("draft"))
+    .save("MOU-Draft.pdf");
+}
+</script>
+
+</body>
+</html>
