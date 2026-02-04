@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MOU Draft Editor</title>
+  <title>MOU Draft Editor | Vault</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- PDF Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
@@ -11,6 +12,7 @@
       margin:0;
       font-family: Arial, sans-serif;
       background:#f5f8fd;
+      color:#102a43;
     }
 
     .nav {
@@ -38,6 +40,8 @@
       width:100%;
       padding:8px;
       margin-bottom:10px;
+      border:1px solid #ddd;
+      border-radius:6px;
     }
 
     button {
@@ -48,6 +52,13 @@
       border-radius:6px;
       cursor:pointer;
       margin-top:10px;
+      width:100%;
+    }
+
+    .note {
+      font-size:12px;
+      color:#666;
+      margin-top:10px;
     }
   </style>
 </head>
@@ -57,46 +68,32 @@
 
 <div class="container">
 
+  <!-- LEFT: FORM -->
   <div class="editor">
     <h3>Fill Details</h3>
+
     <input id="buyer" placeholder="Buyer Name">
     <input id="seller" placeholder="Seller Name">
     <input id="property" placeholder="Property Address">
     <input id="amount" placeholder="Amount">
     <input id="date" placeholder="Date">
 
+    <hr>
+
+    <input id="phone" placeholder="Phone Number (required)">
+
     <button onclick="updateDraft()">Update Draft</button>
     <button onclick="downloadPDF()">Download PDF</button>
+
+    <div class="note">
+      * Phone number required to download draft
+    </div>
   </div>
 
+  <!-- RIGHT: PREVIEW -->
   <div class="preview" id="draft">
     <h2 style="text-align:center">MEMORANDUM OF UNDERSTANDING</h2>
-    <p>This MOU is made on <b id="d_date">[Date]</b> between 
-       <b id="d_seller">[Seller]</b> and 
-       <b id="d_buyer">[Buyer]</b>.</p>
 
-    <p>Property: <b id="d_property">[Property]</b></p>
-    <p>Amount: ₹<b id="d_amount">[Amount]</b></p>
-
-    <p>Seller Signature: ____________</p>
-    <p>Buyer Signature: ____________</p>
-  </div>
-
-</div>
-
-<script>
-function updateDraft(){
-  d_buyer.innerText = buyer.value;
-  d_seller.innerText = seller.value;
-  d_property.innerText = property.value;
-  d_amount.innerText = amount.value;
-  d_date.innerText = date.value;
-}
-
-function downloadPDF(){
-  html2pdf().from(document.getElementById("draft")).save("MOU-Draft.pdf");
-}
-</script>
-
-</body>
-</html>
+    <p>
+      This Memorandum of Understanding is made on
+      <b id
